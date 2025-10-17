@@ -10,7 +10,34 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf5 install -y tmux 
+# Setup VS Code
+rpm --import https://packages.microsoft.com/keys/microsoft.asc
+echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | tee /etc/yum.repos.d/vscode.repo > /dev/null
+dnf check-update
+
+# Setup RPMFusion
+dnf -y install \
+  "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" \
+  "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
+
+# Install codecs
+dnf -y swap ffmpeg-free ffmpeg --allowerasing && \
+dnf -y swap mesa-va-drivers mesa-va-drivers-freeworld && \
+dnf -y swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld && \
+
+# Install all the required packages
+dnf -y install \
+  code \
+  ffmpegthumbnailer \
+  gitk \
+  libgda \
+  libgda-sqlite \
+  libheif-freeworld \
+  libheif-tools \
+  perl-Image-ExifTool \
+  thefuck \
+  tmux \
+  zsh
 
 # Use a COPR Example:
 #
@@ -21,4 +48,4 @@ dnf5 install -y tmux
 
 #### Example for enabling a System Unit File
 
-systemctl enable podman.socket
+# systemctl enable podman.socket
