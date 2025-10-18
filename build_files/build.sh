@@ -13,10 +13,10 @@ set -ouex pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # this installs a package from fedora repos
-. "${SCRIPT_DIR}/setup/rpmfusion.sh"
+# . "${SCRIPT_DIR}/setup/rpmfusion.sh"
+# . "${SCRIPT_DIR}/setup/nvidia.sh"
 . "${SCRIPT_DIR}/setup/vscode.sh"
-. "${SCRIPT_DIR}/setup/codecs.sh"
-. "${SCRIPT_DIR}/setup/nvidia.sh"
+# . "${SCRIPT_DIR}/setup/codecs.sh"
 . "${SCRIPT_DIR}/setup/packages.sh"
 
 # Use a COPR Example:

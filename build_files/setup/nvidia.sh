@@ -1,5 +1,5 @@
 # Install Nvidia drivers and cuda stuff
-rpm-ostree install \
+dnf install -y \
   akmod-nvidia \
   libva-nvidia-driver \
   libva-utils \
