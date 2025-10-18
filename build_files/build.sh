@@ -25,9 +25,17 @@ dnf -y swap ffmpeg-free ffmpeg --allowerasing && \
 dnf -y swap mesa-va-drivers mesa-va-drivers-freeworld && \
 dnf -y swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld && \
 
-# Install all the required packages
+# Install Nvidia drivers and cuda stuff
 dnf -y install \
   akmod-nvidia \
+  libva-nvidia-driver \
+  libva-utils \
+  vdpauinfo \
+  xorg-x11-drv-nvidia-cuda \
+  xorg-x11-drv-nvidia-cuda-libs
+
+# Install all the required packages
+dnf -y install \
   code \
   ffmpegthumbnailer \
   gitk \
@@ -35,15 +43,10 @@ dnf -y install \
   libgda-sqlite \
   libheif-freeworld \
   libheif-tools \
-  libva-utils \
-  nvidia-vaapi-driver \
   perl-Image-ExifTool \
   php-cli \
   thefuck \
   tmux \
-  vdpauinfo \
-  xorg-x11-drv-nvidia-cuda \
-  xorg-x11-drv-nvidia-cuda-libs \
   zsh
 
 # Use a COPR Example:
