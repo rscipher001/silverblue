@@ -10,44 +10,11 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-# Setup VS Code
-rpm --import https://packages.microsoft.com/keys/microsoft.asc
-echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | tee /etc/yum.repos.d/vscode.repo > /dev/null
-dnf check-update
-
-# Setup RPMFusion
-dnf -y install \
-  "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" \
-  "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
-
-# Install codecs
-dnf -y swap ffmpeg-free ffmpeg --allowerasing && \
-dnf -y swap mesa-va-drivers mesa-va-drivers-freeworld
-
-# Install Nvidia drivers and cuda stuff
-# dnf -y install \
-#   akmod-nvidia \
-#   libva-nvidia-driver \
-#   libva-utils \
-#   vdpauinfo \
-#   xorg-x11-drv-nvidia-cuda \
-#   xorg-x11-drv-nvidia-cuda-libs
-
-# Install all the required packages
-dnf -y install \
-  code \
-  ffmpegthumbnailer \
-  gitk \
-  libgda \
-  libgda-sqlite \
-  libheif-freeworld \
-  libheif-tools \
-  mesa-vdpau-drivers-freeworld \
-  perl-Image-ExifTool \
-  php-cli \
-  thefuck \
-  tmux \
-  zsh
+. ./setup/rpmfusion.sh
+. ./setup/vscode.sh
+. ./setup/codecs.sh
+. ./setup/nvidia.sh
+. ./setup/packages.sh
 
 # Use a COPR Example:
 #
