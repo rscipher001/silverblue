@@ -18,6 +18,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # . "${SCRIPT_DIR}/setup/vscode.sh"
 # . "${SCRIPT_DIR}/setup/codecs.sh"
 . "${SCRIPT_DIR}/setup/packages.sh"
+. "${SCRIPT_DIR}/setup/nonfree_packages.sh"
 
 # Use a COPR Example:
 #
