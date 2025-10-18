@@ -1,6 +1,7 @@
 # Install all the required packages
 dnf -y install \
   code \
+  distrobox \
   ffmpegthumbnailer \
   gitk \
   libgda \
@@ -13,3 +14,10 @@ dnf -y install \
   thefuck \
   tmux \
   zsh
+
+# Remove all the not required packages
+dnf -y remove \
+  firefox \
+  firefox-langpacks \
+  yelp \
+  gnome-tour
